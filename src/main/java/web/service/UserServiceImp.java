@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
     private UserDao userDao;
     @Autowired
@@ -15,12 +16,10 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    @Transactional
     @Override
     public List<User> getAll() {
         return userDao.getAll() ;
     }
-    @Transactional
     @Override
     public User get(long id) {
         return userDao.get(id);
